@@ -1,24 +1,25 @@
 package com.example.turismoapp3.controladores;
 
-import com.example.turismoapp3.modelos.Mercancia;
-import com.example.turismoapp3.servicios.MercanciaServicio;
+import com.example.turismoapp3.modelos.Zona;
+import com.example.turismoapp3.servicios.ZonaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/mercancia")
-public class MercanciaControlador {
+@RequestMapping("/zona")
+public class ZonaControlador {
+
     @Autowired
-    MercanciaServicio  objetoMercanciaServicio;
+    ZonaServicio objetoZonaServicio;
 
     @PostMapping
-    public ResponseEntity<?> registrarMercancia(@RequestBody Mercancia datosMercancia){
+    public ResponseEntity<?> registrarZona(@RequestBody Zona datosZona){
         try{
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(objetoMercanciaServicio.registrarMercancia(datosMercancia));
+                    .body(objetoZonaServicio.registrarZona(datosZona));
 
         }catch(Exception error){
             return  ResponseEntity
@@ -29,12 +30,12 @@ public class MercanciaControlador {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> editarMercancia(@RequestBody Mercancia datosNuevosEmpresa, @PathVariable Integer id){
+    public ResponseEntity<?> editarZona(@RequestBody Zona datosNuevosZona, @PathVariable Integer id){
         try{
 
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(objetoMercanciaServicio.modificarMercancia(id,datosNuevosEmpresa));
+                    .body(objetoZonaServicio.modificarZona(id,datosNuevosZona));
 
         }catch(Exception error){
             return  ResponseEntity
@@ -46,12 +47,12 @@ public class MercanciaControlador {
 
 
     @GetMapping
-    public ResponseEntity<?> buscarTodasMercancias(){
+    public ResponseEntity<?> buscarTodasZona(){
         try{
 
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(objetoMercanciaServicio.buscarTodasMercancias());
+                    .body(objetoZonaServicio.buscarTodasZona());
 
         }catch(Exception error){
             return  ResponseEntity
@@ -62,12 +63,12 @@ public class MercanciaControlador {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscarUnaMercancia(@PathVariable Integer id){
+    public ResponseEntity<?> buscarUnaZona(@PathVariable Integer id){
         try{
 
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(objetoMercanciaServicio.buscarMercanciaPorId(id));
+                    .body(objetoZonaServicio.buscarZonaPorId(id));
 
         }catch(Exception error){
             return  ResponseEntity
@@ -79,11 +80,11 @@ public class MercanciaControlador {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> borrarMercancia(@PathVariable Integer id){
+    public ResponseEntity<?> borrarZona(@PathVariable Integer id){
         try{
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(objetoMercanciaServicio.eliminarMercancia(id));
+                    .body(objetoZonaServicio.eliminarZona(id));
 
         }catch(Exception error){
             return  ResponseEntity
@@ -92,6 +93,5 @@ public class MercanciaControlador {
 
         }
     }
-
 
 }

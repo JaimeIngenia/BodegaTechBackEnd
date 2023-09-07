@@ -1,8 +1,9 @@
 package com.example.turismoapp3.servicios;
 
 import com.example.turismoapp3.modelos.Mercancia;
-import com.example.turismoapp3.repositorios.MercanciaRepositorio;
-import com.example.turismoapp3.validaciones.MercanciaValidacion;
+import com.example.turismoapp3.modelos.Zona;
+import com.example.turismoapp3.repositorios.ZonaRepositorio;
+import com.example.turismoapp3.validaciones.ZonaValidacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +11,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MercanciaServicio {
-    @Autowired
-    MercanciaRepositorio objetoMercanciaRepositorio;
-    @Autowired
-    MercanciaValidacion objetoMercanciaValidacion;
+public class ZonaServicio {
 
-    public Mercancia registrarMercancia(Mercancia datosARegistrar) throws Exception{
+    @Autowired
+    ZonaRepositorio objetoZonaRepositorio;
+    @Autowired
+    ZonaValidacion objetoZonaValidacion;
+
+    public Zona registrarZona(Zona datosARegistrar) throws Exception{
         try{
             //validaciones
           /*  if(!this.objetoOfertaValidacion.validarTitulo(datosARegistrar.getTitulo())){
@@ -26,36 +28,36 @@ public class MercanciaServicio {
             //falta validar el nit
 
             //SI PASO TODOS LOS IF ESTOY LISTO PARA LLAMAR AL REPO
-            return(this.objetoMercanciaRepositorio.save(datosARegistrar));
+            return(this.objetoZonaRepositorio.save(datosARegistrar));
 
         }catch (Exception error){
             throw new Exception(error.getMessage());
         }
     }
 
-    public Mercancia modificarMercancia(Integer id, Mercancia datosAModificar)throws Exception{
+    public Zona modificarZona(Integer id, Zona datosAModificar)throws Exception{
         try{
 
             //validamos la informacion
-            if(!this.objetoMercanciaValidacion.validarNombre(datosAModificar.getNombre())){
+            if(!this.objetoZonaValidacion.validarNombre(datosAModificar.getNombre())){
                 throw new Exception("error en el dato entregado");
             }
 
             //buscar que la empresa que tiene el id que envia el usuario exista en BD
-            Optional<Mercancia> mercanciaEncontrada=this.objetoMercanciaRepositorio.findById(id);
+            Optional<Zona> zonaEncontrada=this.objetoZonaRepositorio.findById(id);
             //pregunto si lo que busque esta vacio (QUE NO ESTA)
-            if(mercanciaEncontrada.isEmpty()){
+            if(zonaEncontrada.isEmpty()){
                 throw new Exception("Mercancia no encontrada");
             }
             //Rutina POR SI SI LA ENCONTRE
             //1.Convierto el opcional en la entidad respectiva
-            Mercancia mercanciaQueExiste=mercanciaEncontrada.get();
+            Zona zonaQueExiste=zonaEncontrada.get();
 
             //2. A la empresa que existe le cambio la informacion que el usuario necesita
-            mercanciaQueExiste.setNombre(datosAModificar.getNombre());
+            zonaQueExiste.setNombre(datosAModificar.getNombre());
 
             //3. Guardar la informacion que se acaba de editar (SET)
-            return (this.objetoMercanciaRepositorio.save(mercanciaQueExiste));
+            return (this.objetoZonaRepositorio.save(zonaQueExiste));
 
 
         }catch(Exception error){
@@ -64,19 +66,19 @@ public class MercanciaServicio {
     }
 
 
-    public List<Mercancia> buscarTodasMercancias() throws Exception{
+    public List<Zona> buscarTodasZona() throws Exception{
         try{
-            List<Mercancia>listaMercancia= this.objetoMercanciaRepositorio.findAll();
-            return listaMercancia;
+            List<Zona>listaZona= this.objetoZonaRepositorio.findAll();
+            return listaZona;
 
         }catch(Exception error){
             throw new Exception(error.getMessage());
         }
     }
 
-    public Mercancia buscarMercanciaPorId(Integer id) throws Exception{
+    public Zona buscarZonaPorId(Integer id) throws Exception{
         try{
-            Optional<Mercancia> mercanciaOptional= this.objetoMercanciaRepositorio.findById(id);
+            Optional<Zona> mercanciaOptional= this.objetoZonaRepositorio.findById(id);
             if(mercanciaOptional.isEmpty()){
                 throw new Exception("Mercancia no encontrada");
             }
@@ -86,16 +88,16 @@ public class MercanciaServicio {
         }
     }
 
-    public boolean eliminarMercancia(Integer id) throws  Exception{
+    public boolean eliminarZona(Integer id) throws  Exception{
         try{
 
-            Optional<Mercancia> empresaOpcional=this.objetoMercanciaRepositorio.findById(id);
+            Optional<Zona> empresaOpcional=this.objetoZonaRepositorio.findById(id);
 
             if(empresaOpcional.isPresent()){
-                this.objetoMercanciaRepositorio.deleteById(id);
+                this.objetoZonaRepositorio.deleteById(id);
                 return true;
             }else{
-                throw new Exception("empresa no encontrada");
+                throw new Exception("zona no encontrada");
             }
 
 
@@ -103,5 +105,4 @@ public class MercanciaServicio {
             throw new Exception(error.getMessage());
         }
     }
-
 }

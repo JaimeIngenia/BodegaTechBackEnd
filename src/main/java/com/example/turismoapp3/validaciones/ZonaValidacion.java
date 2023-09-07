@@ -3,7 +3,7 @@ package com.example.turismoapp3.validaciones;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MercanciaValidacion {
+public class ZonaValidacion {
 
     public Boolean validarNombre(String nombre){
 
@@ -14,6 +14,4 @@ public class MercanciaValidacion {
         }
 
     }
-
-
 }
