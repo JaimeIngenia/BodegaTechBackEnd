@@ -1,4 +1,5 @@
 package com.example.turismoapp3.modelos;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,16 +15,30 @@ public class Mercancia {
     private String motivoDevolucion;
     private Double volumen;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "fk_zona", referencedColumnName = "id")
+    @JsonBackReference
+    private Zona zona;
+
     public Mercancia() {
     }
 
-    public Mercancia(Integer id, String nombre, String descripcion, LocalDate fechaEntrada, String motivoDevolucion, Double volumen) {
+    public Zona getZona() {
+        return zona;
+    }
+
+    public void setZona(Zona zona) {
+        this.zona = zona;
+    }
+
+    public Mercancia(Integer id, String nombre, String descripcion, LocalDate fechaEntrada, String motivoDevolucion, Double volumen, Zona zona) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaEntrada = fechaEntrada;
         this.motivoDevolucion = motivoDevolucion;
         this.volumen = volumen;
+        this.zona = zona;
     }
 
     public Integer getId() {

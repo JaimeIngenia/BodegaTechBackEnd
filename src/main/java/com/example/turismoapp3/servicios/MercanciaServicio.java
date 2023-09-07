@@ -53,6 +53,11 @@ public class MercanciaServicio {
 
             //2. A la empresa que existe le cambio la informacion que el usuario necesita
             mercanciaQueExiste.setNombre(datosAModificar.getNombre());
+            mercanciaQueExiste.setDescripcion(datosAModificar.getDescripcion());
+            mercanciaQueExiste.setFechaEntrada(datosAModificar.getFechaEntrada());
+            mercanciaQueExiste.setMotivoDevolucion(datosAModificar.getMotivoDevolucion());
+            mercanciaQueExiste.setVolumen(datosAModificar.getVolumen());
+
 
             //3. Guardar la informacion que se acaba de editar (SET)
             return (this.objetoMercanciaRepositorio.save(mercanciaQueExiste));
