@@ -47,7 +47,7 @@ public class ZonaServicio {
             Optional<Zona> zonaEncontrada=this.objetoZonaRepositorio.findById(id);
             //pregunto si lo que busque esta vacio (QUE NO ESTA)
             if(zonaEncontrada.isEmpty()){
-                throw new Exception("Mercancia no encontrada");
+                throw new Exception("zona no encontrada");
             }
             //Rutina POR SI SI LA ENCONTRE
             //1.Convierto el opcional en la entidad respectiva
@@ -80,7 +80,7 @@ public class ZonaServicio {
         try{
             Optional<Zona> mercanciaOptional= this.objetoZonaRepositorio.findById(id);
             if(mercanciaOptional.isEmpty()){
-                throw new Exception("Mercancia no encontrada");
+                throw new Exception("zona no encontrada");
             }
             return mercanciaOptional.get();
         }catch(Exception error){

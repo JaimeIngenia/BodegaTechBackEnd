@@ -95,7 +95,7 @@ public class MercanciaServicio {
                 this.objetoMercanciaRepositorio.deleteById(id);
                 return true;
             }else{
-                throw new Exception("empresa no encontrada");
+                throw new Exception("mercancia no encontrada");
             }
 
 
